@@ -1,7 +1,7 @@
 export default function App({ req, isCold }) {
-  const parsedCity = decodeURIComponent(req.headers.get('x-vercel-ip-city'));
+  const parsedCountry = decodeURIComponent(req.headers.get('x-vercel-ip-country'));
   // from vercel we get the string `null` when it can't decode the IP
-  const city = parsedCity === 'null' ? null : parsedCity;
+  const country = parsedCountry === 'null' ? null : parsedCountry;
   const ip = (req.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
 
   return (
@@ -16,32 +16,32 @@ export default function App({ req, isCold }) {
               <span>Hello from the edge!</span>
             </h1>
 
-            <div class="info">
-              <div class="block">
-                <div class="contents">
+            <div className="info">
+              <div className="block">
+                <div className="contents">
                   <span>Your city</span>
                   <strong
                     title={
-                      city === null
+                      country === null
                         ? 'GeoIP information could not be derived from your IP'
                         : null
                     }
-                    class={city === null ? 'na' : null}
+                    className={country === null ? 'na' : null}
                   >
-                    {city === null ? 'N/A' : city}
+                    {country === null ? 'N/A' : country}
                   </strong>
                 </div>
               </div>
 
-              <div class="block">
-                <div class="contents">
+              <div className="block">
+                <div className="contents">
                   <span>Your IP address</span>
                   <strong>{ip}</strong>
                 </div>
               </div>
             </div>
           </main>
-          <div class="debug">
+          <div className="debug">
             Generated at {new Date().toISOString()} ({isCold ? 'cold' : 'hot'})
           </div>
         </div>
@@ -405,7 +405,7 @@ function Card() {
 function Footer() {
   return (
     <footer>
-      <p class="company">
+      <p className="company">
         <a target="_blank" href="https://vercel.com" aria-label="Vercel">
           <svg
             viewBox="0 0 4438 1000"
@@ -420,7 +420,7 @@ function Footer() {
         </a>
       </p>
 
-      <p class="details">
+      <p className="details">
         Built with{' '}
         <a target="_blank" href="https://nextjs.org">
           React
@@ -434,7 +434,7 @@ function Footer() {
       <a
         target="_blank"
         href="https://github.com/vercel-labs/react-on-the-edge"
-        class="source"
+        className="source"
       >
         <svg
           width="24"
